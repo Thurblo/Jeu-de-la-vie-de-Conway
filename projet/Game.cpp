@@ -10,8 +10,7 @@ int Game::getNbIterationAsked() {
 }
 
 void Game::iteration() {
-	/*
-	liste de cell = grlle.getCell();
+	grid.getcell()
 
 	boucle sur liste de cell 
 		si getNbCellEnVieAutour == 2 || 3
