@@ -7,7 +7,7 @@ public :
 	int getY();
 	Cells(int x, int y, bool isAlive);
 private : 
-	bool isAlive;
+	bool isAlive = false;
 	int x;
 	int y;
 };
