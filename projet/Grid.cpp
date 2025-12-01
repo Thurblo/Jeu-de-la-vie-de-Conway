@@ -1,14 +1,14 @@
 #include "Grid.h"
 
-int Grid::GetHeigt() {
-	return heigt;
+int Grid::GetHeight() {
+	return height;
 }
 int Grid::GetWidth() {
 	return width;
 }
-Grid::Grid(int width, int heigt)
-   : width(width),heigt(heigt) {
-	resize(width, heigt);
+Grid::Grid(int width, int height)
+   : width(width),height(height) {
+	resize(width, height);
 	cells.clear();
 	std::vector<std::vector<Cells>>cells;
 
@@ -16,7 +16,7 @@ Grid::Grid(int width, int heigt)
 
 void Grid::resize(int w, int h) {
 	width = w;
-	heigt = h;
+	height = h;
 }
 Cells& Grid::GetCells(int x, int y) {
 	return cells[x][y];
@@ -50,17 +50,17 @@ void Grid::GetNeighbor(int x, int y) {
 			count++;
 		}
 	}
-	if (x - 1 >= 0 && y + 1 <= heigt) {
+	if (x - 1 >= 0 && y + 1 <= height) {
 		if (cells[x - 1][y + 1].getIsAlive()) {
 			count++;
 		}
 	}
-	if (y + 1 <= heigt) {
+	if (y + 1 <= height) {
 		if (cells[x][y + 1].getIsAlive()) {
 			count++;
 		}
 	}
-	if (y + 1 <= heigt && x + 1 <= width) {
+	if (y + 1 <= height && x + 1 <= width) {
 		if (cells[x + 1][y + 1].getIsAlive()) {
 			count++;
 		}

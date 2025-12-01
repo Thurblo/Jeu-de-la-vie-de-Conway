@@ -53,7 +53,7 @@
     <ClInclude Include="GridRender.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="GrilleLoadSave.h">
+    <ClInclude Include="GridLoadSave.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

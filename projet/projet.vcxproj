@@ -151,7 +151,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridRender.h" />
-    <ClInclude Include="GrilleLoadSave.h" />
+    <ClInclude Include="GridLoadSave.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
