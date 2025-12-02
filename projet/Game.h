@@ -6,6 +6,7 @@ public :
 	int getNbIteration();
 	int getNbIterationAsked();
 	void iteration();
+	
 
 private : 
 	int nb_iteration;

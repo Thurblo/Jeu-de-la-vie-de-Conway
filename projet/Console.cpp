@@ -1,5 +1,5 @@
 #include "Console.h"
-#include "GrilleLoadSave.h"
+#include "GridLoadSave.h"
 #include <iostream>   
 #include <filesystem>
 
@@ -11,7 +11,9 @@ Console::Console(Game& gamePtr, int nbIterations, std::string file)
 }
 
 void Console::run() {
-	game -> initializeFromFile (inputFile);
+
+	GridLoadSave::load(inputFile);
+
 	std::string outputFile = inputFile + "_out";
 
 	if(!fs::exists(outputFile)) {
