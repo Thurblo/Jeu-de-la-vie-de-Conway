@@ -22,7 +22,7 @@ Cells& Grid::GetCells(int x, int y) {
 	return cells[x][y];
 }
 
-void Grid::GetNeighbor(int x, int y) {
+int Grid::GetNeighbor(int x, int y) {
 	int count = 0;
 	GetCells(x, y);
 	if (x - 1 >= 0 && y - 1 >= 0) {
