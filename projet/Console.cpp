@@ -1,37 +1,27 @@
 #include "Console.h"
 #include "GridLoadSave.h"
+#include "Grid.h"
+#include "Cells.h"
 #include <iostream>   
 #include <filesystem>
 
 namespace fs = std::filesystem;
 
-//Constructeur
-Console::Console(Game& gamePtr, int nbIterations, std::string file)
-	: game(&gamePtr), iterations(nbIterations), inputFile(file) {
-}
-
-void Console::run() {
-
-	GridLoadSave::load(inputFile);
-
-	std::string outputFile = inputFile + "_out";
-
-	if(!fs::exists(outputFile)) {
-		fs::create_directory(outputFile);
+void Console::run(GridLoadSave& gls) {
+	Game game;
+	std::cout << "cb iteration ?" << std::endl;
+	
+	std::cin >> this->nb_iteration_asked;
+	//game.setNbIterationAsked(nb);
+	std::cout << "quelle fichier ?" << std::endl;
+	std::string file;
+	std::cin >> file;
+	Grid grid = gls.load(file);
+	for (int y = 0; y < grid.GetHeight(); ++y) {
+		for (int x = 0; x < grid.GetWidth(); ++x) {
+			Cells& cells = grid.GetCells(x, y);
+			game.iteration(grid, nb_iteration_asked);
+		}
 	}
-
-	std::cout << "Mode Console: Calcul de" << iterations << "iterations..." << std::endl;
-
-	for (int i = 0; i < iterations; i++) {
-
-		game->update(); // pour calculer l'etape suivante on a besoin de l'update dans game
-
-		std::cout << "Iteration" << (i + 1) << "effectue." << std::endl;
-	}
-
-	std::cout << "Fichier contenant l'iteration" << iterations << "sauvegardee." << std::endl;
-	std::string outFile = outputFile + "iter_" + std::to_string(iterations) + ".txt";
-	GridLoadSave::save(game->getGrid(), outFile);
-
-	std::cout << "Termine." << std::endl;
+	gls.save(grid, file);
 }

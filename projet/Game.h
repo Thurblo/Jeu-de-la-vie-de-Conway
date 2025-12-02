@@ -1,11 +1,14 @@
 #ifndef GAME_H
 #pragma once
+#include "Cells.h"
+#include "Grid.h"
 
 class Game {
 public : 
 	int getNbIteration();
 	int getNbIterationAsked();
-	void iteration(Grid& grid,Cells& cells);
+	void setNbIterationAsked(int nb_iteration_asked);
+	void iteration(Grid& grid,int nb_iteration_asked);
 	
 
 private : 

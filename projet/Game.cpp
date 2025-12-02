@@ -9,25 +9,32 @@ int Game::getNbIteration(){
 int Game::getNbIterationAsked() {
 	return this->nb_iteration_asked;
 }
+void Game::setNbIterationAsked(int nb) {
+     nb = nb_iteration_asked;
+}
 
-void Game::iteration(Grid& grid,Cells& cells) {
+void Game::iteration(Grid& grid,int nb_iteration_asked) {
 	nb_iteration = 0;
 	Cells& GetCells(int x,int y);
 	while (nb_iteration < nb_iteration_asked) {
+		Grid nextGrid(grid.GetWidth(), grid.GetHeight());
 		for (int x = 0; x < grid.GetWidth(); ++x) {
 			for (int y = 0; y < grid.GetHeight(); ++y) {
-				if (grid.GetNeighbor(x, y) == 3 && cells.getIsAlive() == false) {
-					cells.setIsAlive(true);
+				if (grid.GetNeighbor(x, y) == 3 && grid.GetCells(x, y).getIsAlive() == false) {
+					nextGrid.GetCells(x, y).setIsAlive(true);
 				}
-				if (cells.getIsAlive() == true && grid.GetNeighbor(x, y) == 2 || 3) {
-					cells.setIsAlive(true);
+				if (grid.GetCells(x, y).getIsAlive() == true && grid.GetNeighbor(x, y) == 2 || grid.GetNeighbor(x, y) == 3) {
+					nextGrid.GetCells(x, y).setIsAlive(true);
 				}
 				else {
-					cells.setIsAlive(false);
+					nextGrid.GetCells(x, y).setIsAlive(false);
 				}
 			}
 		}
 		nb_iteration++;
+		grid = nextGrid;
 	}
 }
+
+
 

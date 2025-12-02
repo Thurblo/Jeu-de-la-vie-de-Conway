@@ -7,11 +7,14 @@ int Grid::GetWidth() {
 	return width;
 }
 Grid::Grid(int width, int height)
-   : width(width),height(height) {
-	resize(width, height);
-	cells.clear();
-	std::vector<std::vector<Cells>>cells;
-
+	: width(width), height(height) {
+	cells.resize(height);
+	for (int y = 0; y < height; y++) {
+		cells[y].resize(width);
+		for (int x = 0; x < width; x++) {
+			cells[y][x] = Cells();
+		}
+	}
 }
 
 void Grid::resize(int w, int h) {
@@ -19,50 +22,50 @@ void Grid::resize(int w, int h) {
 	height = h;
 }
 Cells& Grid::GetCells(int x, int y) {
-	return cells[x][y];
+	return cells[y][x];
 }
 
 int Grid::GetNeighbor(int x, int y) {
 	int count = 0;
-	GetCells(x, y);
 	if (x - 1 >= 0 && y - 1 >= 0) {
-		if (cells[x - 1][y - 1].getIsAlive()) {
-			count++;
-		}
-	}
-	if (y - 1 >= 0) {
-		if (cells[x][y - 1].getIsAlive()) {
-			count++;
-		}
-	}
-	if (y - 1 >= 0 && x + 1 <= width) {
-		if (cells[x + 1][y - 1].getIsAlive()) {
+		if (cells[y - 1][x - 1].getIsAlive()) {
 			count++;
 		}
 	}
 	if (x - 1 >= 0) {
-		if (cells[x - 1][y].getIsAlive()) {
+		if (cells[y][x - 1].getIsAlive()) {
 			count++;
 		}
 	}
-	if (x + 1 <= width) {
-		if (cells[x + 1][y].getIsAlive()) {
+	if (x - 1 >= 0 && y + 1 <= width) {
+		if (cells[y + 1][x - 1].getIsAlive()) {
 			count++;
 		}
 	}
-	if (x - 1 >= 0 && y + 1 <= height) {
-		if (cells[x - 1][y + 1].getIsAlive()) {
+	if (y - 1 >= 0) {
+		if (cells[y - 1][x].getIsAlive()) {
 			count++;
 		}
 	}
-	if (y + 1 <= height) {
-		if (cells[x][y + 1].getIsAlive()) {
+	if (y + 1 <= width) {
+		if (cells[y + 1][x].getIsAlive()) {
+			count++;
+		}
+	}
+	if (y - 1 >= 0 && x + 1 <= height) {
+		if (cells[y - 1][x + 1].getIsAlive()) {
+			count++;
+		}
+	}
+	if (x + 1 <= height) {
+		if (cells[y][x + 1].getIsAlive()) {
 			count++;
 		}
 	}
 	if (y + 1 <= height && x + 1 <= width) {
-		if (cells[x + 1][y + 1].getIsAlive()) {
+		if (cells[y + 1][x + 1].getIsAlive()) {
 			count++;
 		}
 	}
+	return count;
 }

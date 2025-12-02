@@ -2,13 +2,14 @@
 #include <string>
 #include "Game.h"
 #include "Console.h"
+#include "GridLoadSave.h"
 //#include "UI.h"
 
 using namespace std;
 
 int main() {
-    Game game;
-
+    Console console;
+    GridLoadSave gls;
     int choixMode = 0;
 
     cout << "========================================" << endl;
@@ -25,8 +26,7 @@ int main() {
 	}
    
     if (choixMode == 1) {
-        Console consoleMode(game);
-        consoleMode.run();
+        console.run(gls);
     }
     else {
         //graphiqueMode 

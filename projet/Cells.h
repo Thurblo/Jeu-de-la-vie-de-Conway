@@ -6,7 +6,7 @@ public :
 	bool getIsAlive();
 	int getX();
 	int getY();
-	Cells(int x, int y, bool isAlive);
+	Cells();
 private : 
 	bool isAlive = false;
 	int x;

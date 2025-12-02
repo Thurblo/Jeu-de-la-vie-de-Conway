@@ -19,8 +19,9 @@ Grid GridLoadSave::load(const std::string& filename) {
 		for (int x = 0; x < width; x++) {
 			int state;
 			GameLife >> state;
-
-			grid.GetCells(x, y).setIsAlive(state == 1);
+			if (state == 1) {
+				grid.GetCells(x, y).setIsAlive(true);
+			}
 		}
 	}
 	return grid;

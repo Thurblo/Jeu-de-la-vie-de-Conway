@@ -1,17 +1,19 @@
+#ifndef CONSOLE_H
 #pragma once
-
+#include "GridLoadSave.h"
 #include "Game.h"
 #include <string>
 
 class Console {
 private:
 	Game* game;
-	int iterations;
+
 	std::string inputFile;
+	int nb_iteration_asked;
 
 public:
-	Console(Game& gamePtr, int nbIterations, std::string file);
-	void run();
+	void run(GridLoadSave& gls);
 
 };
 
+#endif

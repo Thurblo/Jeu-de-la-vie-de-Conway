@@ -15,4 +15,4 @@ bool Cells::getIsAlive() {
 	return this->isAlive;
 }
 
-Cells::Cells(int x, int y, bool isAlive) : x(x), y(y){}
+Cells::Cells() : isAlive(false){}
