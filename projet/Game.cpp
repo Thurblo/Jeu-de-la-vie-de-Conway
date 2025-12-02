@@ -11,6 +11,7 @@ int Game::getNbIterationAsked() {
 }
 
 void Game::iteration(Grid& grid,Cells& cells) {
+	nb_iteration = 0;
 	Cells& GetCells(int x,int y);
 	while (nb_iteration < nb_iteration_asked) {
 		for (int x = 0; x < grid.GetWidth(); ++x) {
