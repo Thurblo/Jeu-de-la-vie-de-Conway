@@ -23,13 +23,15 @@ void Console::run() {
 	std::cout << "Mode Console: Calcul de" << iterations << "iterations..." << std::endl;
 
 	for (int i = 0; i < iterations; i++) {
-		game->update();
 
-		std::string outFile = outputFile + "iter_" + std::to_string(i + 1) + ".txt";
+		game->update(); // pour calculer l'etape suivante on a besoin de l'update dans game
 
-		GridLoadSave::save(game->getGrid(), outFile);
-
-		std::cout << "Iteration" << (i + 1) << "sauvegardee." << std::endl;
+		std::cout << "Iteration" << (i + 1) << "effectue." << std::endl;
 	}
+
+	std::cout << "Fichier contenant l'iteration" << iterations << "sauvegardee." << std::endl;
+	std::string outFile = outputFile + "iter_" + std::to_string(iterations) + ".txt";
+	GridLoadSave::save(game->getGrid(), outFile);
+
 	std::cout << "Termine." << std::endl;
 }
