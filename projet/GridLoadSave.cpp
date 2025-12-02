@@ -26,12 +26,12 @@ Grid GridLoadSave::load(const std::string& filename) {
 	return grid;
 }
 
-void save(const std:: Grid& grid, const std:string& filename) {
+void GridLoadSave::save(Grid& grid,const std::string& filename) {
 	std::ofstream Gamelife(filename);
 	if (!Gamelife.is_open()) {}
 
-	int width = grid.getWidth();
-	int height = grid.getHeight();
+	int width = grid.GetWidth();
+	int height = grid.GetHeight();
 
 	Gamelife << width << " " << height;
 
@@ -39,7 +39,7 @@ void save(const std:: Grid& grid, const std:string& filename) {
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
 
-			Gamelife << (grid.getCells(x, y)->getIsAlive() ? true : false);
+			Gamelife << (grid.GetCells(x, y).getIsAlive() ? true : false);
 			Gamelife << " ";
 		}
 		Gamelife << "\n";

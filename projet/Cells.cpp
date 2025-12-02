@@ -1,5 +1,8 @@
 #include "Cells.h"
 
+void Cells::setIsAlive(bool isAlive) {
+	this->isAlive = isAlive;
+}
 int Cells::getX() {
 	return this->x;
 }

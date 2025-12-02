@@ -2,6 +2,7 @@
 #pragma once
 class Cells {
 public :
+	void setIsAlive(bool isAlive);
 	bool getIsAlive();
 	int getX();
 	int getY();

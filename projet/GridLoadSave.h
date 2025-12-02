@@ -8,7 +8,7 @@
 class GridLoadSave {
 public:
 	Grid load(const std::string& filename);
-	void save(const std::Grid& grid, const std::string& filename);
+	void save(Grid& grid,const std::string& filename);
 };
 
 #endif
