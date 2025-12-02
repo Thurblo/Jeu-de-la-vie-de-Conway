@@ -10,7 +10,7 @@ public:
 	Grid(int width, int height);
 	void resize(int width, int height);
 	Cells& GetCells(int x, int y);
-	void GetNeighbor(int x, int y);
+	int GetNeighbor(int x, int y);
 private : 
 	int width;
 	int height;

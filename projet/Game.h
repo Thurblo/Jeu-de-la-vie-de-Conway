@@ -5,7 +5,7 @@ class Game {
 public : 
 	int getNbIteration();
 	int getNbIterationAsked();
-	void iteration();
+	void iteration(Grid& grid,Cells& cells);
 	
 
 private : 
