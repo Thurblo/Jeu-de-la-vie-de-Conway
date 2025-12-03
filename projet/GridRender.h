@@ -1,1 +1,14 @@
+#ifndef GRIDRENDER_H
 #pragma once
+#include <SFML/Graphics.hpp>
+#include "Grid.h"
+class GridRender{
+public: 
+	void drawgrid(Grid& grid);
+	int getCellSize(int cellSize);
+private:
+	int cellSize = 20;
+
+
+
+#endif

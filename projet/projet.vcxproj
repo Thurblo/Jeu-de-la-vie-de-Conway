@@ -144,6 +144,7 @@
     </ClCompile>
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridRenderer.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cells.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridRender.h" />
     <ClInclude Include="GridLoadSave.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

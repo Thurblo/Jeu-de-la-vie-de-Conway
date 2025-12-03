@@ -37,7 +37,7 @@ int Grid::GetNeighbor(int x, int y) {
 			count++;
 		}
 	}
-	if (x - 1 >= 0 && y + 1 <= width) {
+	if (x - 1 >= 0 && y + 1 <= height-1) {
 		if (cells[y + 1][x - 1].getIsAlive()) {
 			count++;
 		}
@@ -47,22 +47,22 @@ int Grid::GetNeighbor(int x, int y) {
 			count++;
 		}
 	}
-	if (y + 1 <= width) {
+	if (y + 1 <= height-1) {
 		if (cells[y + 1][x].getIsAlive()) {
 			count++;
 		}
 	}
-	if (y - 1 >= 0 && x + 1 <= height) {
+	if (y - 1 >= 0 && x + 1 <=width-1) {
 		if (cells[y - 1][x + 1].getIsAlive()) {
 			count++;
 		}
 	}
-	if (x + 1 <= height) {
+	if (x + 1 <= width-1) {
 		if (cells[y][x + 1].getIsAlive()) {
 			count++;
 		}
 	}
-	if (y + 1 <= height && x + 1 <= width) {
+	if (y + 1 <= height-1 && x + 1 <= width-1) {
 		if (cells[y + 1][x + 1].getIsAlive()) {
 			count++;
 		}

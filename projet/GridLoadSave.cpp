@@ -34,13 +34,13 @@ void GridLoadSave::save(Grid& grid,const std::string& filename) {
 	int width = grid.GetWidth();
 	int height = grid.GetHeight();
 
-	Gamelife << width << " " << height;
+	Gamelife << width << " " << height << "\n";
 
 
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
 
-			Gamelife << (grid.GetCells(x, y).getIsAlive() ? true : false);
+			Gamelife << (grid.GetCells(x, y).getIsAlive() ? 1 : 0);
 			Gamelife << " ";
 		}
 		Gamelife << "\n";
