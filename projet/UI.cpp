@@ -21,6 +21,8 @@ void UI::show() {
             if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
+
+            // clic souris pour creer ou tuer des cellules 
             if (const auto* mouseButtonPressed = event->getIf<sf::Event::MouseButtonPressed>())
             {
                 if (mouseButtonPressed->button == sf::Mouse::Button::Left)
@@ -34,6 +36,16 @@ void UI::show() {
                     //checker que gridPos est dans les dimensions de la grille
                     Cell& c = game.getGrid().GetCell(gridPos.x, gridPos.y); 
                     c.setIsAlive(!c.getIsAlive());
+                }
+            }
+
+            //ajout de quand fleche de droite appuyee on avance de 1 iteration 
+            if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>())
+            {
+                if (keyPressed->code == sf::Keyboard::Key::Right)
+                {
+                    game.iteration();
+                    std::cout << "Iteration avancee par fleche droite." << std::endl;
                 }
             }
         }

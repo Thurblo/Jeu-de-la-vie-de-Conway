@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : grid(10, 10) {
+Game::Game() : grid(50, 50) {
 
 }
 
