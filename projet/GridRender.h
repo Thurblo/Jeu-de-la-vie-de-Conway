@@ -4,11 +4,14 @@
 #include "Grid.h"
 class GridRender {
 public:
+	GridRender(Grid& grid);
 	void drawGrid(sf::RenderWindow& window, Grid& grid);
 	int getCellSize();
 	sf::Vector2i convertWindowCoordinateToGridCoordinate(sf::Vector2i mousePos);
 private:
-	int cellSize = 20;
+	Grid grid;
+	int w;
+	int cellSize;
 };
 
 

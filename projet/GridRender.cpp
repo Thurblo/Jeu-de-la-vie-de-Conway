@@ -1,5 +1,10 @@
 #include "GridRender.h"
 
+GridRender::GridRender(Grid& grid) :
+	grid(grid), w(grid.GetWidth()) {
+	cellSize = 600 / w;
+}
+
 int GridRender::getCellSize() {
 	return cellSize;
 }

@@ -7,15 +7,7 @@ int Grid::GetWidth() {
 	return width;
 }
 Grid::Grid(int width, int height)
-	: width(width), height(height) {
-	cells.resize(height);
-	for (int y = 0; y < height; y++) {
-		cells[y].resize(width);
-		for (int x = 0; x < width; x++) {
-			cells[y][x] = Cell();
-		}
-	}
-}
+	: width(width), height(height), cells(height, std::vector<Cell>(width)) {}//vector<T> nom(nbElements, valeurInitiale)
 
 void Grid::resize(int w, int h) {
 	width = w;

@@ -4,7 +4,6 @@ void Console::run() {
 	std::cout << "cb iteration ?" << std::endl;
 
 	std::cin >> this->nb_iteration_asked;
-	//game.setNbIterationAsked(nb);
 	std::cout << "quel fichier ?" << std::endl;
 	std::string file;
 	std::cin >> file;
