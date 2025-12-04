@@ -1,10 +1,10 @@
 #include "Console.h"
 
 void Console::run() {
-	std::cout << "cb iteration ?" << std::endl;
+	std::cout << "Combien d'iteration souhaitez-vous effectuer ?" << std::endl;
 
 	std::cin >> this->nb_iteration_asked;
-	std::cout << "quel fichier ?" << std::endl;
+	std::cout << "Comment se nomme votre fichier que souhaitez charger ?" << std::endl;
 	std::string file;
 	std::cin >> file;
 
@@ -18,5 +18,8 @@ void Console::run() {
 		game.iteration();
 		nb_iteration++;
 	}
-	gls.save(grid, file);
+	
+	std::string outputFile = file + "_out.txt"; // pour crée un nouveau fichier de sortie pour eviter l'ecrasement des resultats
+	gls.save(game.getGrid(), outputFile); // ajout du parametre game.getGrid() pour recuperer la grille produite dans game
+	std::cout << "Sauvegarde terminee dans "<< outputFile << std::endl; // ça met juste la phrase de fin 
 }

@@ -10,7 +10,7 @@ UI::UI()
 
 
 void UI::show() {
-    GridRender gr;
+	GridRender gr(game.getGrid()); //ajout d'un argument dans ce constructeur qui emetait une erreur empechant le lancement du code
 
     while (window.isOpen()) {
 
