@@ -1,12 +1,12 @@
 #ifndef CELLS_H
 #pragma once
-class Cells {
+class Cell {
 public :
 	void setIsAlive(bool isAlive);
 	bool getIsAlive();
 	int getX();
 	int getY();
-	Cells();
+	Cell();
 private : 
 	bool isAlive = false;
 	int x;

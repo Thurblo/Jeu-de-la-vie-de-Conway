@@ -133,7 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cells.cpp" />
+    <ClCompile Include="Cell.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GridLoadSave.cpp" />
@@ -143,11 +143,11 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\SFML\include</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="Grid.cpp" />
-    <ClCompile Include="GridRenderer.cpp" />
+    <ClCompile Include="GridRender.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cells.h" />
+    <ClInclude Include="Cell.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />

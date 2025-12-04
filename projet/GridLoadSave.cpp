@@ -6,21 +6,21 @@
 #include "GridLoadSave.h"
 
 Grid GridLoadSave::load(const std::string& filename) {
-	std::ifstream GameLife(filename);
-	if (!GameLife.is_open()) {}
+	std::ifstream filestream(filename);
+	if (!filestream.is_open()) {}
 
 	int width;
 	int height;
-	GameLife >> width >> height;
+	filestream >> width >> height;
 
 	Grid grid(width, height);
 
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
 			int state;
-			GameLife >> state;
+			filestream >> state;
 			if (state == 1) {
-				grid.GetCells(x, y).setIsAlive(true);
+				grid.GetCell(x, y).setIsAlive(true);
 			}
 		}
 	}
@@ -28,22 +28,22 @@ Grid GridLoadSave::load(const std::string& filename) {
 }
 
 void GridLoadSave::save(Grid& grid,const std::string& filename) {
-	std::ofstream Gamelife(filename);
-	if (!Gamelife.is_open()) {}
+	std::ofstream filestream(filename);
+	if (!filestream.is_open()) {}
 
 	int width = grid.GetWidth();
 	int height = grid.GetHeight();
 
-	Gamelife << width << " " << height << "\n";
+	filestream << width << " " << height << "\n";
 
 
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
 
-			Gamelife << (grid.GetCells(x, y).getIsAlive() ? 1 : 0);
-			Gamelife << " ";
+			filestream << (grid.GetCell(x, y).getIsAlive() ? 1 : 0);
+			filestream << " ";
 		}
-		Gamelife << "\n";
+		filestream << "\n";
 	}
 
 

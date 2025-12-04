@@ -12,8 +12,7 @@ using namespace std;
 int main() {
     
 
-    Console console;
-    GridLoadSave gls;
+   
     int choixMode = 0;
 
     cout << "========================================" << endl;
@@ -30,18 +29,13 @@ int main() {
 	}
    
     if (choixMode == 1) {
-        console.run(gls);
+        Console console;
+        console.run();
     }
     else {
         UI UI;
-        sf::RenderWindow window;
-        Grid grid = gls.load("Empty.txt");
-        UI.windowDraw(window, grid);
+        UI.show();
     }
-
-
-
-
 
     return 0;
     

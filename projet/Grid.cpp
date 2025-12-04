@@ -12,7 +12,7 @@ Grid::Grid(int width, int height)
 	for (int y = 0; y < height; y++) {
 		cells[y].resize(width);
 		for (int x = 0; x < width; x++) {
-			cells[y][x] = Cells();
+			cells[y][x] = Cell();
 		}
 	}
 }
@@ -20,12 +20,14 @@ Grid::Grid(int width, int height)
 void Grid::resize(int w, int h) {
 	width = w;
 	height = h;
+	//TODO agrandir ou supprimer les cellules en fonction
 }
-Cells& Grid::GetCells(int x, int y) {
+
+Cell& Grid::GetCell(int x, int y) {
 	return cells[y][x];
 }
 
-int Grid::GetNeighbor(int x, int y) {
+int Grid::GetNeighborAliveCount(int x, int y) {
 	int count = 0;
 	if (x - 1 >= 0 && y - 1 >= 0) {
 		if (cells[y - 1][x - 1].getIsAlive()) {

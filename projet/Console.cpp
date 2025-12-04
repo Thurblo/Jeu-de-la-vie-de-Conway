@@ -1,27 +1,23 @@
 #include "Console.h"
-#include "GridLoadSave.h"
-#include "Grid.h"
-#include "Cells.h"
-#include <iostream>   
-#include <filesystem>
 
-namespace fs = std::filesystem;
-
-void Console::run(GridLoadSave& gls) {
-	Game game;
+void Console::run() {
 	std::cout << "cb iteration ?" << std::endl;
-	
+
 	std::cin >> this->nb_iteration_asked;
 	//game.setNbIterationAsked(nb);
-	std::cout << "quelle fichier ?" << std::endl;
+	std::cout << "quel fichier ?" << std::endl;
 	std::string file;
 	std::cin >> file;
+
+	GridLoadSave gls;
+
 	Grid grid = gls.load(file);
-	for (int y = 0; y < grid.GetHeight(); ++y) {
-		for (int x = 0; x < grid.GetWidth(); ++x) {
-			Cells& cells = grid.GetCells(x, y);
-			game.iteration(grid, nb_iteration_asked);
-		}
+	game.setGrid(grid);
+
+	int nb_iteration = 0;
+	while (nb_iteration < nb_iteration_asked) {
+		game.iteration();
+		nb_iteration++;
 	}
 	gls.save(grid, file);
 }

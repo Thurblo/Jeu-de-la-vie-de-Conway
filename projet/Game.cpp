@@ -1,39 +1,42 @@
 #include "Game.h"
-#include "Cells.h"
-#include "Grid.h"
 
-int Game::getNbIteration(){
-	return this->nb_iteration;
+Game::Game() : grid(10, 10) {
+
 }
 
-int Game::getNbIterationAsked() {
-	return this->nb_iteration_asked;
-}
-void Game::setNbIterationAsked(int nb) {
-     nb = nb_iteration_asked;
+Game::Game(Grid g) : grid(g) {
+
 }
 
-void Game::iteration(Grid& grid,int nb_iteration_asked) {
-	nb_iteration = 0;
-	Cells& GetCells(int x,int y);
-	while (nb_iteration < nb_iteration_asked) {
-		Grid nextGrid(grid.GetWidth(), grid.GetHeight());
-		for (int x = 0; x < grid.GetWidth(); ++x) {
-			for (int y = 0; y < grid.GetHeight(); ++y) {
-				if (grid.GetNeighbor(x, y) == 3 && grid.GetCells(x, y).getIsAlive() == false) {
-					nextGrid.GetCells(x, y).setIsAlive(true);
-				}
-				if (grid.GetCells(x, y).getIsAlive() == true && grid.GetNeighbor(x, y) == 2 || grid.GetNeighbor(x, y) == 3) {
-					nextGrid.GetCells(x, y).setIsAlive(true);
-				}
-				else {
-					nextGrid.GetCells(x, y).setIsAlive(false);
-				}
+void Game::setGrid(Grid g)
+{
+	this->grid = g;
+}
+
+Grid& Game::getGrid()
+{
+	return this->grid;
+}
+
+
+void Game::iteration() {
+
+	Grid nextGrid(grid.GetWidth(), grid.GetHeight());
+	for (int x = 0; x < grid.GetWidth(); ++x) {
+		for (int y = 0; y < grid.GetHeight(); ++y) {
+			if (grid.GetNeighborAliveCount(x, y) == 3 && grid.GetCell(x, y).getIsAlive() == false) {
+				nextGrid.GetCell(x, y).setIsAlive(true);
+			}
+			if (grid.GetCell(x, y).getIsAlive() == true && grid.GetNeighborAliveCount(x, y) == 2 || grid.GetNeighborAliveCount(x, y) == 3) {
+				nextGrid.GetCell(x, y).setIsAlive(true);
+			}
+			else {
+				nextGrid.GetCell(x, y).setIsAlive(false);
 			}
 		}
-		nb_iteration++;
-		grid = nextGrid;
 	}
+	grid = nextGrid;
+
 }
 
 

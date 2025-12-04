@@ -1,7 +1,7 @@
 #ifndef GRID_H
 #pragma once
 #include <vector>
-#include "Cells.h"
+#include "Cell.h"
 
 class Grid {
 public:
@@ -9,13 +9,13 @@ public:
 	int GetHeight();
 	Grid(int width, int height);
 	void resize(int width, int height);
-	Cells& GetCells(int x, int y);
-	int GetNeighbor(int x, int y);
-private : 
+	Cell& GetCell(int x, int y);
+	int GetNeighborAliveCount(int x, int y);
+private:
 	int width;
 	int height;
-	std::vector<std::vector<Cells>>cells;
-	
+	std::vector<std::vector<Cell>> cells;
+
 };
 
 

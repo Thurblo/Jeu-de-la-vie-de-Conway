@@ -3,12 +3,14 @@
 UI::UI()
     : window(sf::VideoMode({ 800, 600 }), "Game of Life") {
     window.setFramerateLimit(60);
+   // GridLoadSave gls;
+    //Grid grid = gls.load("Empty.txt");
+    //game.setGrid(grid);
 }
 
 
-void UI::windowDraw(sf::RenderWindow& window, Grid& grid) {
+void UI::show() {
     GridRender gr;
-    int Cellsize = gr.getCellSize();
 
     while (window.isOpen()) {
 
@@ -19,9 +21,24 @@ void UI::windowDraw(sf::RenderWindow& window, Grid& grid) {
             if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
+            if (const auto* mouseButtonPressed = event->getIf<sf::Event::MouseButtonPressed>())
+            {
+                if (mouseButtonPressed->button == sf::Mouse::Button::Left)
+                {
+                    std::cout << "the right button was pressed" << std::endl;
+                    std::cout << "mouse x: " << mouseButtonPressed->position.x << std::endl;
+                    std::cout << "mouse y: " << mouseButtonPressed->position.y << std::endl;
+                    sf::Vector2i gridPos = gr.convertWindowCoordinateToGridCoordinate(mouseButtonPressed->position);
+                    std::cout << "grid x: " << gridPos.x << std::endl;
+                    std::cout << "grid y: " << gridPos.y << std::endl;
+                    //checker que gridPos est dans les dimensions de la grille
+                    Cell& c = game.getGrid().GetCell(gridPos.x, gridPos.y); 
+                    c.setIsAlive(!c.getIsAlive());
+                }
+            }
         }
         window.clear(sf::Color::Black);
-        gr.drawgrid(window, grid, Cellsize);
+        gr.drawGrid(window, game.getGrid());
         window.display();
     }
 }
