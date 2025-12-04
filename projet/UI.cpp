@@ -1,7 +1,14 @@
 #include "UI.h"
 
-void UI::windowDraw(sf::RenderWindow& window,Grid& grid,GridRender& gr) {
-    int cs = gr.getCellSize();
+UI::UI()
+    : window(sf::VideoMode({ 800, 600 }), "Game of Life") {
+    window.setFramerateLimit(60);
+}
+
+
+void UI::windowDraw(sf::RenderWindow& window, Grid& grid) {
+    GridRender gr;
+    int Cellsize = gr.getCellSize();
 
     while (window.isOpen()) {
 
@@ -12,8 +19,9 @@ void UI::windowDraw(sf::RenderWindow& window,Grid& grid,GridRender& gr) {
             if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
-            
-            sf::RenderWindow window(sf::VideoMode({ grid.GetWidth() * gr.getCellSize(), grid.GetHeight() * gr.getCellSize() }), "Game of Life");
-            window.display();
         }
+        window.clear(sf::Color::Black);
+        gr.drawgrid(window, grid, Cellsize);
+        window.display();
+    }
 }

@@ -1,6 +1,6 @@
 #include "GridRender.h"
 
-int GridRender::getCellSize(int cellSize) {
+int GridRender::getCellSize() {
 	return cellSize;
 }
 
@@ -16,12 +16,14 @@ void GridRender::drawgrid(sf::RenderWindow& window, Grid& grid,int cellSize) {
     for (int x = 0; x < w; ++x) {
         for (int y = 0; y < h; ++y) {
             if (grid.GetCells(x, y).getIsAlive()) {
-                // Conversion explicite en float pour éviter les warnings/erreurs
-                cell.setPosition({ static_cast<float>(x * cellSize), static_cast<float>(y * cellSize) });
-                window.draw(cell);
+                cell.setFillColor(sf::Color::White);
+            }
+            else {
+                cell.setFillColor(sf::Color::Black);
+            }
+            cell.setPosition({ static_cast<float>(x * cellSize), static_cast<float>(y * cellSize) });
+            window.draw(cell);
             }
         }
     }
     
-
-}

@@ -3,11 +3,15 @@
 #include "Game.h"
 #include "Console.h"
 #include "GridLoadSave.h"
-//#include "UI.h"
+#include "UI.h"
+#include "Grid.h"
+#include <SFML/Graphics.hpp>
 
 using namespace std;
 
 int main() {
+    
+
     Console console;
     GridLoadSave gls;
     int choixMode = 0;
@@ -29,7 +33,10 @@ int main() {
         console.run(gls);
     }
     else {
-        //graphiqueMode 
+        UI UI;
+        sf::RenderWindow window;
+        Grid grid = gls.load("Empty.txt");
+        UI.windowDraw(window, grid);
     }
 
 

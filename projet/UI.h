@@ -4,7 +4,9 @@
 #include "Grid.h"
 class UI {
 public: 
-	void windowDraw(sf::RenderWindow& window, Grid& grid, GridRender& gr);
+	void windowDraw(sf::RenderWindow& window, Grid& grid);
+	UI();
 
-
+private :
+	sf::RenderWindow window;
 };
