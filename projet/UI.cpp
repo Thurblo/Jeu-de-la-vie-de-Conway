@@ -2,8 +2,8 @@
 #include <iostream>
 
 UI::UI()
-    : window(sf::VideoMode({ 800, 600 }), "Game of Life") {
-    window.setFramerateLimit(60);
+    : window(sf::VideoMode({ 600, 600 }), "Game of Life") {
+    window.setFramerateLimit(120);
 }
 
 void UI::show() {
@@ -12,14 +12,16 @@ void UI::show() {
     // pour evite clignotement
     sf::Vector2i lastEditedPos(-1, -1);
 
-    sf::Texture playButtonNotPressed("playButtonNotPressed.png");
+    /*sf::Texture playButtonNotPressed("playButtonNotPressed.png");
     sf::Sprite playButtonNotPressedSprite(playButtonNotPressed);
     playButtonNotPressedSprite.setPosition(sf::Vector2f(650, 50));
 
     sf::Texture playButtonPressed("playButtonPressed.png");
-    sf::Sprite playButtonPressedSprite(playButtonPressed);
+    sf::Sprite playButtonPressedSprite(playButtonPressed);*/
 
     bool isPlaying = false;
+
+    unsigned int framerate = 30;
 
     while (window.isOpen()) {
 
@@ -33,23 +35,29 @@ void UI::show() {
 				// fleche droite pour avancer d'une itération
                 if (keyPressed->code == sf::Keyboard::Key::Right) {
                     game.iteration();
-                }
-                
+                }                
                 // Touche R pour reset 
                 if (keyPressed->code == sf::Keyboard::Key::R) {
                     game.getGrid().clear(); 
                     std::cout << "Grille Reset " << std::endl;
                     isPlaying = false;
                 }
-
                 // barre espace automatique
                 if (keyPressed->code == sf::Keyboard::Key::Space) {
 					isPlaying = !isPlaying;
-                    window.setFramerateLimit(10);
-                    std::cout << (isPlaying ? "Lecture auto..." : "Pause.") << std::endl;
-                    
+                    window.setFramerateLimit(framerate);
+                    std::cout << (isPlaying ? "Lecture auto..." : "Pause.") << std::endl;  
                 }
-                
+                if (keyPressed->code == sf::Keyboard::Key::Up) {
+                    framerate = framerate * 2;
+                    window.setFramerateLimit(framerate);
+                    std::cout << "vitesse multiplié par 2" << std::endl;
+                }
+                if (keyPressed->code == sf::Keyboard::Key::Down) {
+                    framerate = framerate / 2;
+                    window.setFramerateLimit(framerate);
+                    std::cout << "vitesse divisé par 2" << std::endl;
+                }
             }
         }
         // maintien de souris (clic gauche)
@@ -87,7 +95,7 @@ void UI::show() {
 
         window.clear(sf::Color::Black);
         gr.drawGrid(window, game.getGrid());
-        window.draw(playButtonNotPressedSprite);
+        //window.draw(playButtonNotPressedSprite);
 
         window.display();
     }
