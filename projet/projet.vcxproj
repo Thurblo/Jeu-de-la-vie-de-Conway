@@ -144,6 +144,7 @@
     </ClCompile>
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridRender.cpp" />
+    <ClCompile Include="preset.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridRender.h" />
     <ClInclude Include="GridLoadSave.h" />
+    <ClInclude Include="preset.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
