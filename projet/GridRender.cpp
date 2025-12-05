@@ -16,14 +16,14 @@ sf::Vector2i GridRender::convertWindowCoordinateToGridCoordinate(sf::Vector2i mo
 
 
 void GridRender::drawGrid(sf::RenderWindow& window, Grid& grid) {
+
 	window.clear();
 
 	int w = grid.GetWidth();
 	int h = grid.GetHeight();
 
 	// SFML 3 préfère les Vector2f explicites
-	const int DECALAGE_BORDURE = 1;
-	sf::RectangleShape cell(sf::Vector2f(static_cast<float>(cellSize - DECALAGE_BORDURE), static_cast<float>(cellSize - DECALAGE_BORDURE)));
+	sf::RectangleShape cell(sf::Vector2f(static_cast<float>(cellSize), static_cast<float>(cellSize)));
 
 	for (int x = 0; x < w; ++x) {
 		for (int y = 0; y < h; ++y) {

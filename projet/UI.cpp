@@ -3,14 +3,18 @@
 UI::UI()
     : window(sf::VideoMode({ 800, 600 }), "Game of Life") {
     window.setFramerateLimit(60);
-   // GridLoadSave gls;
-    //Grid grid = gls.load("Empty.txt");
-    //game.setGrid(grid);
+
 }
 
 
 void UI::show() {
 	GridRender gr(game.getGrid()); //ajout d'un argument dans ce constructeur qui emetait une erreur empechant le lancement du code
+    sf::Texture playButtonNotPressed("playButtonNotPressed.png");
+    sf::Sprite playButtonNotPressedSprite(playButtonNotPressed);
+    playButtonNotPressedSprite.setPosition(sf::Vector2f(650, 50));
+
+    sf::Texture playButtonPressed("playButtonPressed.png");
+    sf::Sprite playButtonPressedSprite(playButtonPressed);
 
     while (window.isOpen()) {
 
@@ -51,6 +55,7 @@ void UI::show() {
         }
         window.clear(sf::Color::Black);
         gr.drawGrid(window, game.getGrid());
+        window.draw(playButtonNotPressedSprite);
         window.display();
     }
 }
