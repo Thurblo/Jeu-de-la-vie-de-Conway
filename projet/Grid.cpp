@@ -20,46 +20,22 @@ Cell& Grid::GetCell(int x, int y) {
 }
 
 int Grid::GetNeighborAliveCount(int x, int y) {
-	int count = 0;
-	if (x - 1 >= 0 && y - 1 >= 0) {
-		if (cells[y - 1][x - 1].getIsAlive()) {
-			count++;
-		}
-	}
-	if (x - 1 >= 0) {
-		if (cells[y][x - 1].getIsAlive()) {
-			count++;
-		}
-	}
-	if (x - 1 >= 0 && y + 1 <= height-1) {
-		if (cells[y + 1][x - 1].getIsAlive()) {
-			count++;
-		}
-	}
-	if (y - 1 >= 0) {
-		if (cells[y - 1][x].getIsAlive()) {
-			count++;
-		}
-	}
-	if (y + 1 <= height-1) {
-		if (cells[y + 1][x].getIsAlive()) {
-			count++;
-		}
-	}
-	if (y - 1 >= 0 && x + 1 <=width-1) {
-		if (cells[y - 1][x + 1].getIsAlive()) {
-			count++;
-		}
-	}
-	if (x + 1 <= width-1) {
-		if (cells[y][x + 1].getIsAlive()) {
-			count++;
-		}
-	}
-	if (y + 1 <= height-1 && x + 1 <= width-1) {
-		if (cells[y + 1][x + 1].getIsAlive()) {
-			count++;
-		}
-	}
-	return count;
+    int count = 0;
+
+    // balayage
+    for (int i = -1; i <= 1; i++) {
+        for (int j = -1; j <= 1; j++) {
+
+            if (i == 0 && j == 0) continue;
+
+            // utilisation de modulo pour la grille torique 
+            int voisinX = (x + i + width) % width;
+            int voisinY = (y + j + height) % height;
+
+            if (cells[voisinY][voisinX].getIsAlive()) {
+                count++;
+            }
+        }
+    }
+    return count;
 }
