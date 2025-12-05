@@ -11,6 +11,8 @@ public:
 	void resize(int width, int height);
 	Cell& GetCell(int x, int y);
 	int GetNeighborAliveCount(int x, int y);
+	void clear();
+
 private:
 	int width;
 	int height;
