@@ -19,6 +19,7 @@ void UI::show() {
     sf::Texture playButtonPressed("playButtonPressed.png");
     sf::Sprite playButtonPressedSprite(playButtonPressed);
 
+    bool isPlaying = false;
 
     while (window.isOpen()) {
 
@@ -38,6 +39,15 @@ void UI::show() {
                 if (keyPressed->code == sf::Keyboard::Key::R) {
                     game.getGrid().clear(); 
                     std::cout << "Grille Reset " << std::endl;
+                    isPlaying = false;
+                }
+
+                // barre espace automatique
+                if (keyPressed->code == sf::Keyboard::Key::Space) {
+					isPlaying = !isPlaying;
+                    window.setFramerateLimit(10);
+                    std::cout << (isPlaying ? "Lecture auto..." : "Pause.") << std::endl;
+                    
                 }
                 
             }
@@ -70,7 +80,11 @@ void UI::show() {
             lastEditedPos = sf::Vector2i(-1, -1);
         }
 
-   
+        //pour mode auto
+        if (isPlaying) {
+            game.iteration();
+        }
+
         window.clear(sf::Color::Black);
         gr.drawGrid(window, game.getGrid());
         window.draw(playButtonNotPressedSprite);
