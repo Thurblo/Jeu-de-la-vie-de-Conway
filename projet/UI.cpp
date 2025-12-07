@@ -40,7 +40,7 @@ void UI::show() {
     sf::Texture x2BtnPressed;
     x2BtnPressed.loadFromFile("X2ButtonPressed.png");
 
-    sf::Sprite x2BtnSprite(playBtnNotPressed);
+    sf::Sprite x2BtnSprite(x2BtnNotPressed);
     x2BtnSprite.setPosition(sf::Vector2f(650, 150));
 
     while (window.isOpen()) {
@@ -93,12 +93,13 @@ void UI::show() {
 
                         timeOfClick = gameClock.getElapsedTime();
                         x2IsPlaying = true;
+
                     }
                 }
             }
             if (x2IsPlaying) {
                 sf::Time currentTime = gameClock.getElapsedTime();
-                if ((currentTime - timeOfClick).asSeconds() >= 0.5f) {
+                if ((currentTime - timeOfClick).asSeconds() >= 0.2f) {
                     x2BtnSprite.setTexture(x2BtnNotPressed);
                     x2IsPlaying = false;
                 }
