@@ -9,8 +9,10 @@ class UI {
 public:
 	void show();
 	UI();
+	unsigned int getFrameRate();
 
 private:
 	sf::RenderWindow window;
 	Game game;
+	unsigned int frameRate = 30;
 };
