@@ -67,4 +67,30 @@
     <Text Include="Empty.txt" />
     <Text Include="Test.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="X2ButtonPressed.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="X2ButtonNotPressed.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="resetButtonPressed.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="resetButtonNotPressed.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="playButtonPressed.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="playButtonNotPressed.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="div2ButtonPressed.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="div2ButtonNotPressed.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

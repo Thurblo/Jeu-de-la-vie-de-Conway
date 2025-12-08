@@ -159,6 +159,16 @@
     <Text Include="Empty.txt" />
     <Text Include="Test.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="div2ButtonNotPressed.png" />
+    <Image Include="div2ButtonPressed.png" />
+    <Image Include="playButtonNotPressed.png" />
+    <Image Include="playButtonPressed.png" />
+    <Image Include="resetButtonNotPressed.png" />
+    <Image Include="resetButtonPressed.png" />
+    <Image Include="X2ButtonNotPressed.png" />
+    <Image Include="X2ButtonPressed.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
