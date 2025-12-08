@@ -4,7 +4,7 @@ void Console::run() {
 	std::cout << "Combien d'iteration souhaitez-vous effectuer ?" << std::endl;
 
 	std::cin >> this->nb_iteration_asked;
-	std::cout << "Comment se nomme votre fichier que souhaitez charger ?" << std::endl;
+	std::cout << "Comment se nomme le fichier que souhaitez charger ?" << std::endl;
 	std::string file;
 	std::cin >> file;
 
