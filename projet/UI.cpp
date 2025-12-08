@@ -6,7 +6,7 @@ unsigned int UI::getFrameRate() {
 };
 
 UI::UI()
-    : window(sf::VideoMode({ 800, 600 }), "Game of Life") {
+    : window(sf::VideoMode({ 800, 600 }), "Jeu de la vie") {
     window.setFramerateLimit(frameRate);
 }
 
@@ -42,6 +42,28 @@ void UI::show() {
 
     sf::Sprite x2BtnSprite(x2BtnNotPressed);
     x2BtnSprite.setPosition(sf::Vector2f(650, 150));
+
+    // BOUTON /2
+    bool div2IsPlaying = false;
+    sf::Texture div2BtnNotPressed;
+    div2BtnNotPressed.loadFromFile("div2ButtonNotPressed.png");
+
+    sf::Texture div2BtnPressed;
+    div2BtnPressed.loadFromFile("div2ButtonPressed.png");
+
+    sf::Sprite div2BtnSprite(div2BtnNotPressed);
+    div2BtnSprite.setPosition(sf::Vector2f(650, 250));
+
+    // BOUTON RESET
+    bool resetIsPlaying = false;
+    sf::Texture resetBtnNotPressed;
+    resetBtnNotPressed.loadFromFile("resetButtonNotPressed.png");
+
+    sf::Texture resetBtnPressed;
+    resetBtnPressed.loadFromFile("resetButtonPressed.png");
+
+    sf::Sprite resetBtnSprite(resetBtnNotPressed);
+    resetBtnSprite.setPosition(sf::Vector2f(650, 350));
 
     while (window.isOpen()) {
 
@@ -105,7 +127,71 @@ void UI::show() {
                 }
             }
 
+            // BOUTON /2
+            if (const auto* mouseEvent = event->getIf<sf::Event::MouseButtonPressed>()) {
+                if (mouseEvent->button == sf::Mouse::Button::Left) {
 
+                    sf::Vector2i pixelPos = { mouseEvent->position.x, mouseEvent->position.y };
+
+                    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+
+                    // pour check si on est dans la position du bouton
+                    if (worldPos.x >= 650 && worldPos.x <= 750 &&
+                        worldPos.y >= 275 && worldPos.y <= 325) {
+
+                        frameRate = frameRate / 2;
+                        window.setFramerateLimit(frameRate);
+                        std::cout << "vitesse divise par 2" << std::endl;
+
+                        // changement de l'image pour 0.5s quand appuyer
+                        div2BtnSprite.setTexture(div2BtnPressed);
+
+                        timeOfClick = gameClock.getElapsedTime();
+                        div2IsPlaying = true;
+
+                    }
+                }
+            }
+            if (div2IsPlaying) {
+                sf::Time currentTime = gameClock.getElapsedTime();
+                if ((currentTime - timeOfClick).asSeconds() >= 0.2f) {
+                    div2BtnSprite.setTexture(div2BtnNotPressed);
+                    div2IsPlaying = false;
+                }
+            }
+
+            // BOUTON RESET
+            if (const auto* mouseEvent = event->getIf<sf::Event::MouseButtonPressed>()) {
+                if (mouseEvent->button == sf::Mouse::Button::Left) {
+
+                    sf::Vector2i pixelPos = { mouseEvent->position.x, mouseEvent->position.y };
+
+                    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+
+                    // pour check si on est dans la position du bouton
+                    if (worldPos.x >= 650 && worldPos.x <= 750 &&
+                        worldPos.y >= 375 && worldPos.y <= 425) {
+
+                        game.getGrid().clear();
+                        std::cout << "Grille Reset " << std::endl;
+                        playIsPlaying = false;
+
+                        // changement de l'image pour 0.5s quand appuyer
+                        resetBtnSprite.setTexture(resetBtnPressed);
+
+                        timeOfClick = gameClock.getElapsedTime();
+                        resetIsPlaying = true;
+
+                    }
+                }
+            }
+            if (resetIsPlaying) {
+                sf::Time currentTime = gameClock.getElapsedTime();
+                if ((currentTime - timeOfClick).asSeconds() >= 0.2f) {
+                    resetBtnSprite.setTexture(resetBtnNotPressed);
+                    resetIsPlaying = false;
+                }
+            }
 
 
 
@@ -178,6 +264,8 @@ void UI::show() {
         gr.drawGrid(window, game.getGrid());
         window.draw(playBtnSprite);
         window.draw(x2BtnSprite);
+        window.draw(div2BtnSprite);
+        window.draw(resetBtnSprite);
 
         window.display();
     }
